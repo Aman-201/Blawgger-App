@@ -34,8 +34,10 @@ async deletePost(slug){
 }
 async getPost(slug){
     try{
+        console.log(slug)
          return await this.databases.getDocument(configs.appwriteDatabseId,configs.appwriteCollectionId,slug)
     }catch(error){
+        console.log("inside of getPost catch")
         throw error;
     }
 }

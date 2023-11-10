@@ -4,15 +4,20 @@ import { Container, PostForm } from "../components";
 import { useNavigate, useParams } from "react-router-dom";
 function EditPost(){
     const [post,setPost]=useState([]);
-    const {slug}=useParams();
+    const slug=useParams();
+    console.log(slug)
     const navigate=useNavigate();
     useEffect(()=>{
+        console.log("inside useEffect editPost")
         if(slug){
-        dbservice.getPost(slug).then((post)=>{if(post){setPost(post)}})
+            console.log(slug)
+        dbservice.getPost({slug}).then((post)=>{if(post){setPost(post)} else{console.log("elso post")}})
+        console.log(post);
     }
     else
     navigate('/');
     },[slug,navigate])
+    console.log(post);
     return ( post?
        ( <div className="py-8">
             <Container>

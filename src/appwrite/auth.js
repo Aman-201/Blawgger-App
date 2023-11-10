@@ -7,10 +7,13 @@ export class AuthService{
     
     constructor(){
         
-        console.log(configs.appwriteProjectId)
+        console.log(configs)
         this.client.setEndpoint(configs.appwriteUrl) // Your API Endpoint
         .setProject(configs.appwriteProjectId);
-        this.account=new Account(this.client);     
+        console.log(configs.appwriteUrl)
+        console.log(typeof configs.appwriteUrl)
+        this.account=new Account(this.client);    
+        console.log(this.account) 
     }
     async createAccount({email,password,name}){
         try{
@@ -28,15 +31,18 @@ export class AuthService{
         
         catch(error)
         {
+            console.log("account creation error")
             throw error
         }
     }
     async login({email,password}){
         try{
-            await this.account.createEmailSession(email,password);
+            console.log(email,password)
+            return await this.account.createEmailSession(email,password);
         }
         catch(error)
         {
+            console.log("account login error")
             throw error;
         }
     }
@@ -44,9 +50,12 @@ export class AuthService{
     {
         try{
             return await this.account.get();
+
+        //   getUser.then((user)=>{console.log(user)},(error)=>{console.log("error inside get user",error)})  
         }
         catch(error)
         {
+            console.log("get current user error")
             throw error;
         }
         return null;
@@ -58,6 +67,7 @@ export class AuthService{
      }
      catch(error)
      {
+        console.log("logout error")
         throw error;
      }
     }

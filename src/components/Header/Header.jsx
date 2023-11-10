@@ -1,10 +1,11 @@
-import {Container , Logo , Logout} from '../index'
+import React from 'react';
+import {Container , Logo , Logout, Button} from '../index'
 import { Link } from 'react-router-dom';
-import { UseSelector, useSelector } from 'react-redux/es/hooks/useSelector';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { list } from 'postcss';
+
 function Header(){
-    const authStatus=useSelector((state)=>{state.auth.status})
+    const authStatus=useSelector((state)=>{ console.log(state);console.log(state.status); return state.status})
     const navigate=useNavigate()
     const navItems=[
         {
@@ -24,7 +25,7 @@ function Header(){
         },
         {
             name:'All Posts',
-            slug:'/all-posts',
+            slug:'/all-post',
             active:authStatus
         },
         {
@@ -44,15 +45,15 @@ function Header(){
                     </div>
                     <ul className='ml-auto flex'>
                         {
-                            navItems.map((item)=>{
+                            navItems.map((item)=>(
                                 (item.active)?(
                                     <li key={item.name} >
-                                        <button onClick={navigate(item.slug)} className='inline-block px-6 py-2 duration-200 hover:bg-blue-100 rounded-full'>
+                                        <Button onClick={(e)=>{ console.log(e); navigate(item.slug)}} className='inline-block px-6 py-2 duration-200 hover:bg-blue-100 rounded-full'>
                                             {item.name}
-                                        </button>
+                                        </Button>
                                     </li>
                                 ): null
-                            })}
+                            ))}
                             {authStatus && (
                                 <li>
                                 <Logout />

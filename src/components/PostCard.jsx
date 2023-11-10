@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import dbservice from "../appwrite/db";
 function PostCard({$id,title,featuredImage}){
+    console.log($id)
+    console.log(title)
+    console.log(featuredImage)
     return (
         <Link to={`/post/${$id}`}>
         <div className="rounded-xl w-full bg-gray-100 p-4 ">

@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import {login as authLogin} from "../store/authSlice"
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
-import { authservice } from "../appwrite/auth";
+import  authservice from "../appwrite/auth";
 import {Button , Input , Logo} from './index'
 
 function Login()
@@ -16,11 +16,13 @@ function Login()
     const login=async(data)=>{
         setError("");
         try{
-            const session=await authservice.Login(data);
+            console.log(data)
+            const session=await authservice.login(data);
             if(session){
                 const userData=await authservice.getCurrentUser();
+                console.log(userData)
                 if(userData)
-                dispatch(authLogin(userData))
+                console.log(dispatch(authLogin({userData})))
             navigate('/');
             }
             else{
@@ -29,6 +31,7 @@ function Login()
             }
         } 
         catch(e){
+            console.log("inside catch of login")
             setError(e.message);
         }
     }
@@ -65,7 +68,9 @@ function Login()
             required:true,
             min:8
         })}/>
-        <Button type="submit" className="w-full">Submit</Button>
+       {/* <button>abc</button> */}
+        <div> <Button type="submit" className="w-full" onSubmit={handleSubmit(login) }>"Submit"</Button></div>
+       
         </div>
         </form>
         </div>

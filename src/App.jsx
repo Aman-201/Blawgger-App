@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import authservice from './appwrite/auth';
 import { Header , Footer} from './components';
 import './App.css'
+import { Outlet } from 'react-router-dom';
 function App() {
   const [loading, setLoading] = useState(true);
 const dispatch=useDispatch();
@@ -24,7 +25,7 @@ authservice.getCurrentUser()
   <div className='min-h-screen flex flex-wrap content-between bg-gray-400'>
     <div className='w-full block'>
       <Header/>
-      todo
+      <Outlet />
       <Footer/>
     </div>
   </div>

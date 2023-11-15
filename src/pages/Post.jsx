@@ -16,13 +16,14 @@ export default function Post() {
 
     useEffect(() => {
         if (slug) {
-            dbservice.getPost(slug).then((post) => {
-                if (post) setPost(post);
+            console.log(slug)
+            dbservice.getPost(slug).then((post) => { console.log(post)
+                if (post) { console.log("inside if");setPost(post);}
                 else navigate("/");
-            });
+            }).catch((e)=>{console.log(e)});
         } else navigate("/");
     }, [slug, navigate]);
-
+console.log(post)
     const deletePost = () => {
         dbservice.deletePost(post.$id).then((status) => {
             if (status) {

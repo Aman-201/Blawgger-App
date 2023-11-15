@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 function PostForm({post})
 {
+    console.log(post)
     const {register , handleSubmit , watch , setValue , control , getValues}=useForm({
         defaultValues:{
             title:post?.title || '',
@@ -20,11 +21,11 @@ function PostForm({post})
     const submit=async(data)=>{
         if(post)
             {
-                const file=data.image[0]?dbservice.uploadFile(data.image[0]):null
+                const file=data.image[0]?await dbservice.uploadFile(data.image[0]):null
                 if(file){
-                    dbservice.deleteFile(post.featuredImage);
+                    await dbservice.deleteFile(post.featuredImage);
                 }
-                const dbPost=dbservice.updatePost(post.$id,{...data,featuredImage:file?file.$id:undefined})
+                const dbPost=await dbservice.updatePost(post.$id,{...data,featuredImage:file?file.$id:undefined})
                 if(dbPost)
                 {
                     navigate(`/post/${dbPost.$id}`)

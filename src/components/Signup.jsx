@@ -31,7 +31,7 @@ const Signup=()=>{
     }
     return (
         <div className="flex items-center justify-center w-full">
-        <div className={`w-full max-w-lg bg-gray-10- rounded-xl p-10 border border-black/10 mx-auto `}>
+        <div className={`w-full max-w-lg bg-blue-10 rounded-xl p-10 border border-blue/10 mx-auto `}>
             
         <div className="mb-2 flex justify-center">
                 <span className="inline-block w-full max-w-[100px]"> <Logo width="100" /></span>

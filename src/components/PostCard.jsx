@@ -6,7 +6,7 @@ function PostCard({$id,title,featuredImage}){
     console.log(featuredImage)
     return (
         <Link to={`/post/${$id}`}>
-        <div className="rounded-xl w-full bg-gray-100 p-4 ">
+        <div className="rounded-xl w-full bg-blue-100 p-4 ">
             <div className="w-full justify-center mb-4">
                 <img src={dbservice.getFilePreview(featuredImage)} alt=""/>
             </div>
